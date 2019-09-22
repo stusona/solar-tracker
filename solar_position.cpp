@@ -7,23 +7,29 @@
  * matches altitude, azimuth values returned by NOAA calculator. This variation was
  * converted from Javascript
 */
+	#include <iostream>
+	#include <time.h>
+	#include <string>
 	#include <math.h>
 	#include <stdio.h>
 
-  float UTHours=21., UTMinutes=43., UTSeconds=0.;
-  float Lat=37.9, Lon=-122., TZ = -7;
-  int year=2019,month=9,day=20;  //UTC date
+	using namespace std;
 
-// accuracy tests... double precision algorithm said to be accurate to 0.5 arcmin (.0083 deg) until 2015
-// 2003/1/1 Lat,Lon = (0,0) @12:00 UTC: if double precision get alt=66.9713, az=177.9905, zenith=23.0287
-//                       for above NOAA says                        66.98       177.99
-// 2023/1/1 (0,0) @12:00 UTC: get 66.9847, 177.9738 NOAA says 66.99 177.97
-// local test Eugene OR:
-//   float UTHours=20., UTMinutes=0., UTSeconds=0.; //(local  hours - TZ)
-//   float Lat=44.052, Lon=-123.087; // (44 3' 7" -123 5' 13") @12:00 local time no DST => 20:00 UT get alt = 68.97 az = 172.14 NOAA sez 68.98 172.12
-//   int year=2014,month=6,day=12;  //UTC date
+	// Get current date/time, format is YYYY-MM-DD.HH:mm:ss
+	const std::string currentDateTime()
+	{
+		time_t     now = time(0);
+		struct tm  tstruct;
+		char       buf[80];
+		tstruct = *localtime(&now);
+		// Visit http://en.cppreference.com/w/cpp/chrono/c/strftime
+		// for more information about date/time format
+		strftime(buf, sizeof(buf), "%Y-%m-%d.%X", &tstruct);
 
-	void get_sun_pos(float latitude, float longitude, float *altitude, float *azimuth)
+    return buf;
+	}
+
+	void get_sun_pos(int year, int month, int day, int UTHour, int UTMinute, float latitude, float longitude, float *altitude, float *azimuth)
 	{
 
 		float zenith;
@@ -32,7 +38,7 @@
 		float rad=(pi/180);
 		float EarthMeanRadius=6371.01;	// In km
 		float AstronomicalUnit=149597890.;	// In km
-		float DecimalHours = UTHours + (UTMinutes + UTSeconds / 60.0 ) / 60.0;
+		float DecimalHours = UTHour + (UTMinute ) / 60.0;
 		long liAux1 =(month-14)/12;
 		long liAux2=(1461*(year + 4800 + liAux1))/4 + (367*(month - 2-12*liAux1))/12- (3*(year + 4900 + liAux1)/100)/4+day-32075;
 		float JulianDate=(liAux2)-0.5+ DecimalHours/24.0;
@@ -69,13 +75,31 @@
 		*altitude=90.-UTSunCoordinatesZenithAngle;
 }
 
+
 int main()
 {
+	string dateTime;
+	dateTime = currentDateTime();
+	cout << "%Y-%m-%d.%X "<< dateTime << endl;
+	cout << "Year: " << dateTime.substr(0,4) << endl;
+	cout << "Month: " << dateTime.substr(5,2) << endl;
+	cout << "Day: " << dateTime.substr(8,2) << endl;
+	cout << "Hour: " << dateTime.substr(11,2) << endl;
+	cout << "Min: " << dateTime.substr(14,2) << endl;
+
+	float Lat = 37.9, Lon = -122., TZ = -7;
 	float alt, az;
-	get_sun_pos(Lat, Lon, &alt, &az);
-	printf("At Lat = %7.2f, Lon = %7.2f \r\n",Lat,Lon);
-	printf("UTC Date: %02i/%02i/%4i local time: %2i:%02i \r\n",month,day,year,(int)(UTHours+TZ),(int)UTMinutes);
-	printf("Sun altitude = %7.2f, azimuth = %7.2f\n",alt,az);
+	int year = stoi(dateTime.substr(0,4));
+	int month = stoi(dateTime.substr(5,2));
+	int day = stoi(dateTime.substr(8,2));
+	int UTHour = stoi(dateTime.substr(11,2));
+	int UTMinute = stoi(dateTime.substr(14,2));
+
+	get_sun_pos(year, month, day, UTHour, UTMinute, Lat, Lon, &alt, &az);
+
+	printf("At Lat = %7.2f, Lon = %7.2f \n", Lat, Lon);
+	printf("UTC Date: %02i/%02i/%4i UTC Time: %02i:%02i \n", month, day, year, UTHour, UTMinute);
+	printf("Sun altitude = %7.2f, azimuth = %7.2f \n", alt, az);
 
 	return 0;
 }
