@@ -42,4 +42,8 @@ typedef struct pid_data_t
 // Holds constants and latest errors of single axis PID
 extern pid_data_t motor_pid;
 
+void initialize_sensors(void);
+void start_read_imu(void);
+imu_t read_imu_fifo(void);
+
 #endif

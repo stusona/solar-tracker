@@ -13,7 +13,7 @@
 int initialize_sensors(void)
 {
 	printf("Initializing sensors...\n");
-	start_read_imu();	// start IMU
+//	start_read_imu();	// start IMU
 	printf("IMU data is being read\n\n");
 
 	return 0;
