@@ -5,8 +5,8 @@ TARGET = Mapper
 TOUCH		 := $(shell touch *)
 CC	:= g++
 LINKER	 := g++ -o
-CFLAGS	:= -c -Wall -g -I/usr/include/python2.7 `pkg-config --cflags opencv`
-LFLAGS	:= -lwiringPi -lpython2.7 -I/usr/include/python2.7 -lwiringPiPca9685 -lpthread
+#CFLAGS	:= -c -Wall -g -I/usr/include/python2.7 `pkg-config --cflags opencv`
+LFLAGS	:= -lwiringPi -lpython2.7 -I/usr/include/python2.7 -lpthread
 
 # Local Source Variables
 SOURCES	 := $(wildcard *.cpp)

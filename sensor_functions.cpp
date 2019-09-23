@@ -13,9 +13,8 @@
 int initialize_sensors(void)
 {
 	printf("Initializing sensors...\n");
-	start_read_imu();					// start IMU
+	start_read_imu();	// start IMU
 	printf("IMU data is being read\n\n");
-	auv_usleep(100000);
 
 	return 0;
 }
@@ -39,7 +38,7 @@ void start_read_imu(void)
     fclose(fd);
     printf("\nCreated and cleared imu.fifo\n");
 
-    printf("Starting read_imu.py, then waiting 3 seconds\n");
+    printf("Starting read_imu.py\n");
     char cmd[100];
     strcpy(cmd,"nohup python -u read_imu.py > read_imu.log 2>&1 < /dev/null & exit");
     system(cmd);
