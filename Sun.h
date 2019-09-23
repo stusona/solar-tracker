@@ -13,5 +13,5 @@ private:
 	const std::string currentDateTime();
 public:
 	void get_sun_pos(float latitude, float longitude, float *altitude, float *azimuth);
-}
+};
 #endif

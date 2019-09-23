@@ -13,5 +13,5 @@ public:
 	void motorForward(int speed);
 	void motorBackward(int speed);
 	void motorStop();
-}
+};
 #endif

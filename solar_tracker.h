@@ -6,7 +6,7 @@
 #define SOLAR_TRACKER_H
 #include <iostream>
 #include <fstream>
-#include <string>
+#include <string.h>
 #include <time.h>
 #include <math.h>
 #include <stdio.h>
