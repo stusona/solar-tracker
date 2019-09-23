@@ -82,8 +82,12 @@ while True:
   # returned in meters per second squared):
   #x_acc,y_acc,z_acc = bno.read_linear_acceleration()
 
-  _string = "%f %f %f %f %f %f %i %i %i %i %f %f %f" %(heading, roll, pitch)
-  #_string = "%f %f %f %f %f %f %i %i %i %i %f %f %f" %(heading, roll, pitch, p, q, r, sys, gyro, accel, mag, x_acc, y_acc, o = open("imu.fifo", write(_string)
+  _string = "%f %f %f" %(heading, roll, pitch)
+  #_string = "%f %f %f %f %f %f %i %i %i %i %f %f %f" %(heading, roll, pitch, p, q, r, sys, gyro, accel, mag, x_acc, y_acc, 
+  
+  # open fifo and write string to it
+  fifo = open("imu.fifo","w")
+  fifo.write(_string)
   fifo.close()
 
   # Print everything out.
