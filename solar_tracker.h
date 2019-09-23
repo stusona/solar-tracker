@@ -16,6 +16,15 @@
 
 using namespace std;
 
+// Struct for holding BNO055 return values
+typedef struct
+{
+  float yaw, roll, pitch;
+  float p, q, r;
+  int sys, gyro, accel, mag;
+  float x_acc, y_acc, z_acc;
+} imu_t;
+
 // Struct for PID Controllers
 typedef struct pid_data_t
 {

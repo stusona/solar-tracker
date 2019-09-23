@@ -69,8 +69,8 @@ sw, bl, accel, mag, gyro = bno.get_revision()
 
 #print('Reading BNO055 data, press Ctrl-C to quit...')
 while True:
-  # Read the Euler angles for heading, roll, pitch (all in degrees).
-  heading, roll, pitch = bno.read_euler()
+  # Read the Euler angles for yaw, roll, pitch (all in degrees).
+  yaw, roll, pitch = bno.read_euler()
 
   # Gyroscope data (in degrees per second):
   #p,q,r = bno.read_gyroscope()
@@ -82,17 +82,17 @@ while True:
   # returned in meters per second squared):
   #x_acc,y_acc,z_acc = bno.read_linear_acceleration()
 
-  _string = "%f %f %f" %(heading, roll, pitch)
-  #_string = "%f %f %f %f %f %f %i %i %i %i %f %f %f" %(heading, roll, pitch, p, q, r, sys, gyro, accel, mag, x_acc, y_acc, 
-  
+  _string = "%f %f %f" %(yaw, roll, pitch)
+  #_string = "%f %f %f %f %f %f %i %i %i %i %f %f %f" %(yaw, roll, pitch, p, q, r, sys, gyro, accel, mag, x_acc, y_acc,
+
   # open fifo and write string to it
   fifo = open("imu.fifo","w")
   fifo.write(_string)
   fifo.close()
 
   # Print everything out.
-  print('Heading={0:0.2F} Roll={1:0.2F} Pitch={2:0.2F}'.format(heading, roll, pitch))
-  #print('Heading={0:0.2F} Roll={1:0.2F} Pitch={2:0.2F}\tSys_cal={3} Gyro_cal={4} Accel_cal={5} Mag_cal={6}'.format(heading, roll, pitch, sys, gyro, accel, mag))
+  print('yaw={0:0.2F} Roll={1:0.2F} Pitch={2:0.2F}'.format(yaw, roll, pitch))
+  #print('yaw={0:0.2F} Roll={1:0.2F} Pitch={2:0.2F}\tSys_cal={3} Gyro_cal={4} Accel_cal={5} Mag_cal={6}'.format(yaw, roll, pitch, sys, gyro, accel, mag))
 
   # Other values you can optionally read:
   # Orientation as a quaternion:
