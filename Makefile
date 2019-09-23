@@ -1,6 +1,6 @@
 # project name
 # change to match your main c file
-TARGET = Mapper
+TARGET = solar_tracker
 
 TOUCH		 := $(shell touch *)
 CC	:= g++

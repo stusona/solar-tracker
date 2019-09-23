@@ -4,10 +4,11 @@
 #ifndef MOTOR_H
 #define MOTOR_H
 
-class MOTOR
+class Motor
 {
 private:
-	int blah;
+	int speed; // 0-100
+	bool direction;
 public:
 	void motorForward(int speed);
 	void motorBackward(int speed);
