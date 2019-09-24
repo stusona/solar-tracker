@@ -5,7 +5,7 @@ TARGET = solar_tracker
 TOUCH		 := $(shell touch *)
 CC	:= g++
 LINKER	 := g++ -o
-#CFLAGS	:= -c -Wall -g -I/usr/include/python2.7 `pkg-config --cflags opencv`
+CFLAGS	:= -c -Wall -g -I/usr/include/python2.7
 LFLAGS	:= -lwiringPi -lpython2.7 -I/usr/include/python2.7 -lpthread
 
 # Local Source Variables

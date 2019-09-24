@@ -13,7 +13,7 @@ Sun::Sun()
 /*
  * Get current date/time, format is YYYY-MM-DD.HH:mm:ss
  */
-const std::string currentDateTime()
+const std::string Sun::currentDateTime()
 {
 	time_t     now = time(0);
 	struct tm  tstruct;
@@ -35,18 +35,18 @@ const std::string currentDateTime()
  * matches altitude, azimuth values returned by NOAA calculator. This variation was
  * converted from Javascript
  */
-void get_sun_pos(float latitude, float longitude, float *elevation, float *azimuth)
+void Sun::get_sun_pos(float latitude, float longitude, float *elevation, float *azimuth)
 {
 	string dateTime;
 	dateTime = currentDateTime();
 
+	float zenith;
 	int year = stoi(dateTime.substr(0,4));
 	int month = stoi(dateTime.substr(5,2));
 	int day = stoi(dateTime.substr(8,2));
 	int UTHour = stoi(dateTime.substr(11,2));
 	int UTMinute = stoi(dateTime.substr(14,2));
 
-	float zenith;
 	float pi =3.14159265358979323;
 	float twopi=(2*pi);
 	float rad=(pi/180);

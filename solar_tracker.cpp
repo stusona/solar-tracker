@@ -13,7 +13,7 @@ int main()
 	//pinMode(12, OUTPUT);
 	//pinMode(XX, OUTPUT);
 
-	float Lat = 37.9, Lon = -122., TZ = -7;
+	float Lat = 37.9, Lon = -122.;
 	float elev, azi;
 	Sun mySun;
 	mySun.get_sun_pos(Lat, Lon, &elev, &azi);
