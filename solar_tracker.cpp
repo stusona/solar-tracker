@@ -22,12 +22,12 @@ int main()
 	//printf("UTC Date: %02i/%02i/%4i UTC Time: %02i:%02i \n", month, day, year, UTHour, UTMinute);
 	printf("Sun altitude = %7.2f, azimuth = %7.2f \n", elev, azi);
 
-	start_read_imu();
-	imu_t imu = read_imu_fifo();
+	initialize_sensors();
 	int input;
 	do
 	{
-		printf("%7.2f, %7.2f, %7.2f\n", imu.yaw, imu.roll, imu.pitch);
+		imu_t imu = read_imu_fifo();
+		printf("%7.0f, %7.0f, %7.0f\n", imu.yaw, imu.roll, imu.pitch);
 		cout << "Type 1 to repeat, anything else to end" << endl;
 		cin >> input;
 	} while(input == 1);

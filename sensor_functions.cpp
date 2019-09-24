@@ -13,7 +13,7 @@
 int initialize_sensors(void)
 {
 	printf("Initializing sensors...\n");
-//	start_read_imu();	// start IMU
+	start_read_imu();	// start IMU
 	printf("IMU data is being read\n\n");
 
 	return 0;
@@ -43,6 +43,7 @@ void start_read_imu(void)
     strcpy(cmd,"nohup python -u read_imu.py > read_imu.log 2>&1 < /dev/null & exit");
     system(cmd);
     printf("Started IMU using system(cmd)\n");
+    usleep(3000000); // sleep to let python scrip start up
 
     // Check whether the python script wrote anything
     std::ifstream pFile("imu.fifo");

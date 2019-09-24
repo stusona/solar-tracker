@@ -11,6 +11,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <wiringPi.h>
+#include <unistd.h>
 #include "Motor.h"
 #include "Sun.h"
 
