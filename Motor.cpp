@@ -5,6 +5,12 @@
 #include "solar_tracker.h"
 
 /*
+ * Motor constructor
+ */
+Motor::Motor()
+{ }
+
+/*
  * motorForward
  */
 void Motor::motorForward(int speed)
