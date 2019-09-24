@@ -12,7 +12,7 @@ private:
 	float azimuth;
 	const std::string currentDateTime();
 public:
-	Sun();
+	Sun(); // TODO maybe add lat/long to this constructor
 	void get_sun_pos(float latitude, float longitude, float *altitude, float *azimuth);
 };
 #endif
