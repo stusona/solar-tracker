@@ -34,9 +34,9 @@ $(OBJECTS): %.o : %.cpp $(INCLUDES)
 	@echo "Compiled "$<" successfully!"
 
 # module compiling command
-$(MOD_OBJECTS): %.o : %.cpp $(MOD_INCLUDES)
-	@$(TOUCH) $(CC) $(CFLAGS) -c $< -o $(@)
-	@echo "Compiled "$<" successfully!"
+#$(MOD_OBJECTS): %.o : %.cpp $(MOD_INCLUDES)
+#	@$(TOUCH) $(CC) $(CFLAGS) -c $< -o $(@)
+#	@echo "Compiled "$<" successfully!"
 
 
 # install to /usr/bin
