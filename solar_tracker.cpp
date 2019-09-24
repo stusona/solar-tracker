@@ -15,8 +15,8 @@ int main()
 
 	float Lat = 37.9, Lon = -122., TZ = -7;
 	float elev, azi;
-	Sun sun;
-	sun.get_sun_pos(Lat, Lon, &elev, &azi);
+	Sun mySun;
+	mySun.get_sun_pos(Lat, Lon, &elev, &azi);
 
 	printf("At Lat = %7.2f, Lon = %7.2f \n", Lat, Lon);
 	//printf("UTC Date: %02i/%02i/%4i UTC Time: %02i:%02i \n", month, day, year, UTHour, UTMinute);
