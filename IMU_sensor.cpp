@@ -66,7 +66,7 @@ imu_t IMU_sensor::read_fifo(void)
 	fclose(fd);
 	sscanf(buf,"%f %f %f %f %f %f %i %i %i %i %f %f %f",
 				 &imu.yaw,  &imu.roll,  &imu.pitch,
-				 &imu.p,    &imu.q,     &imu.r,
+				 &imu.magX, &imu.magY,  &imu.magZ,
 				 &imu.sys,  &imu.gyro,  &imu.accel,
 				 &imu.mag,  &imu.x_acc, &imu.y_acc, &imu.z_acc);
 

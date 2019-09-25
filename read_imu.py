@@ -72,6 +72,9 @@ while True:
   # Read the Euler angles for yaw, roll, pitch (all in degrees).
   yaw, roll, pitch = bno.read_euler()
 
+  # Magnetometer data (in micro-Teslas):
+  magX, magY, magZ = bno.read_magnetometer()
+
   # Gyroscope data (in degrees per second):
   #p,q,r = bno.read_gyroscope()
 
@@ -82,7 +85,7 @@ while True:
   # returned in meters per second squared):
   #x_acc,y_acc,z_acc = bno.read_linear_acceleration()
 
-  _string = "%f %f %f" %(yaw, roll, pitch)
+  _string = "%f %f %f %f %f %f" %(yaw, roll, pitch, magX, magY, magZ)
   #_string = "%f %f %f %f %f %f %i %i %i %i %f %f %f" %(yaw, roll, pitch, p, q, r, sys, gyro, accel, mag, x_acc, y_acc,
 
   # open fifo and write string to it
@@ -99,8 +102,6 @@ while True:
   #x,y,z,w = bno.read_quaterion()
   # Sensor temperature in degrees Celsius:
   #temp_c = bno.read_temp()
-  # Magnetometer data (in micro-Teslas):
-  #x,y,z = bno.read_magnetometer()
   # Accelerometer data (in meters per second squared):
   #x,y,z = bno.read_accelerometer()
   # Linear acceleration data (i.e. acceleration from movement, not gravity--

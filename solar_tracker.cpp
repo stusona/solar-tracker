@@ -9,20 +9,18 @@ int main()
 {
 	wiringPiSetupPhys(); // start wiringPi
 	IMU_sensor IMU;
+	IMU.start_read_imu();	// start IMU
 	// pinmode for motor control
 	//pinMode(12, OUTPUT);
 	//pinMode(XX, OUTPUT);
 
-	float Lat = 37.9, Lon = -122.;
-	float elev, azi;
+	float Lat = 37.9, Lon = -122.; // solar panel position on the earth
 	Sun mySun;
-	mySun.get_sun_pos(Lat, Lon, &elev, &azi);
-
+	vec_t sunPosition = mySun.getPosition(Lat, Lon);
 	printf("At Lat = %7.2f, Lon = %7.2f \n", Lat, Lon);
-	//printf("UTC Date: %02i/%02i/%4i UTC Time: %02i:%02i \n", month, day, year, UTHour, UTMinute);
-	printf("Sun altitude = %7.2f, azimuth = %7.2f \n", elev, azi);
+	printf("Sun position: %7.0f, %7.0f, %7.0f\n", sunPosition.x, sunPosition.y, sunPosition.z);
+	//printf("Sun altitude = %7.2f, azimuth = %7.2f \n", elev, azi);
 
-	IMU.start_read_imu();	// start IMU
 	int input;
 	do
 	{
