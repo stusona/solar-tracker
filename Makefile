@@ -33,12 +33,6 @@ $(OBJECTS): %.o : %.cpp $(INCLUDES)
 	@$(TOUCH) $(CC) $(CFLAGS) -c $< -o $(@)
 	@echo "Compiled "$<" successfully!"
 
-# module compiling command
-#$(MOD_OBJECTS): %.o : %.cpp $(MOD_INCLUDES)
-#	@$(TOUCH) $(CC) $(CFLAGS) -c $< -o $(@)
-#	@echo "Compiled "$<" successfully!"
-
-
 # install to /usr/bin
 $(phony all) : $(TARGET)
 .PHONY: install

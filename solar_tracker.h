@@ -17,6 +17,12 @@
 
 using namespace std;
 
+// Struct for vectors
+typedef struct
+{
+	float x, y, z;
+} vec_t
+
 // Struct for holding BNO055 return values
 typedef struct
 {
@@ -38,13 +44,9 @@ typedef struct pid_data_t
 	float dt;
 	float isat;
 	float period;
-}pid_data_t;
+} pid_data_t;
 
 // Holds constants and latest errors of single axis PID
 extern pid_data_t motor_pid;
-
-int initialize_sensors(void);
-void start_read_imu(void);
-imu_t read_imu_fifo(void);
 
 #endif

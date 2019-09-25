@@ -5,10 +5,10 @@
  */
 #include "solar_tracker.h"
 
-
 int main()
 {
-	wiringPiSetupPhys();
+	wiringPiSetupPhys(); // start wiringPi
+	IMU_sensor IMU;
 	// pinmode for motor control
 	//pinMode(12, OUTPUT);
 	//pinMode(XX, OUTPUT);
@@ -22,11 +22,11 @@ int main()
 	//printf("UTC Date: %02i/%02i/%4i UTC Time: %02i:%02i \n", month, day, year, UTHour, UTMinute);
 	printf("Sun altitude = %7.2f, azimuth = %7.2f \n", elev, azi);
 
-	initialize_sensors();
+	IMU.start_read_imu();	// start IMU
 	int input;
 	do
 	{
-		imu_t imu = read_imu_fifo();
+		imu_t imu = IMU.read_fifo();
 		printf("%7.0f, %7.0f, %7.0f\n", imu.yaw, imu.roll, imu.pitch);
 		cout << "Type 1 to repeat, anything else to end" << endl;
 		cin >> input;

@@ -1,33 +1,21 @@
-/******************************************************************************
- * sensor_functions.cpp
- *
- * Initializing and reading sensors
-******************************************************************************/
+/*
+ * IMU.cpp
+ */
+#include "IMU_sensor.h"
 #include "solar_tracker.h"
 
-/******************************************************************************
- * int initialize_sensors(void)
- *
- * Initializes the IMU
-******************************************************************************/
-int initialize_sensors(void)
-{
-	printf("Initializing sensors...\n");
-	start_read_imu();	// start IMU
-	printf("IMU data is being read\n\n");
+/*
+ * IMU constructor
+ */
+IMU_sensor::IMU_sensor()
+{ }
 
-	return 0;
-}
-
-///////////////////////////////////////////////////////////////////////////////
-//															IMU Functions
-///////////////////////////////////////////////////////////////////////////////
 /******************************************************************************
  * void start_read_imu
  *
- * Starts read_imu.py code
+ * Starts read_imu.py program
 ******************************************************************************/
-void start_read_imu(void)
+void IMU_sensor::start_read_imu(void)
 {
   // Create flag for continuing
   bool success = false;
@@ -65,11 +53,11 @@ void start_read_imu(void)
 }
 
 /******************************************************************************
- * imu_t read_imu_fifo
+ * imu_t read_fifo
  *
  * Reads IMU values from imu.fifo and write to the imu struct
 ******************************************************************************/
-imu_t read_imu_fifo(void)
+imu_t IMU_sensor::read_fifo(void)
 {
 	imu_t imu;
 	char buf[1000];
