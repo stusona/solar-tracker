@@ -80,10 +80,10 @@ vec_t Sun::getPosition(float latitude, float longitude)
 	float UTSunCoordinatesAzimuth = atan2( Y, X );
 	if ( UTSunCoordinatesAzimuth < 0.0 )
 		UTSunCoordinatesAzimuth = UTSunCoordinatesAzimuth + twopi;
-	UTSunCoordinatesAzimuth = UTSunCoordinatesAzimuth/rad;
+	//UTSunCoordinatesAzimuth = UTSunCoordinatesAzimuth/rad;
 	float Parallax = (EarthMeanRadius/AstronomicalUnit) * sin(UTSunCoordinatesZenithAngle);
-	UTSunCoordinatesZenithAngle = (UTSunCoordinatesZenithAngle + Parallax)/rad;
-	float elevation = 90. - UTSunCoordinatesZenithAngle;
+	UTSunCoordinatesZenithAngle = (UTSunCoordinatesZenithAngle + Parallax);
+	float elevation = pi/2. - UTSunCoordinatesZenithAngle;
 
 	cartesianPosition.x = cos(UTSunCoordinatesAzimuth) * cos(elevation);
 	cartesianPosition.y = sin(theta) * cos(elevation);
