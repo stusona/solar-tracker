@@ -8,11 +8,10 @@
 class Sun
 {
 private:
-	float elevation;
-	float azimuth;
+	vec_t position;
 	const std::string currentDateTime();
 public:
 	Sun(); // TODO maybe add lat/long to this constructor
-	void get_sun_pos(float latitude, float longitude, float *elevation, float *azimuth);
+	vec_t getPosition(float latitude, float longitude);
 };
 #endif

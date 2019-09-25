@@ -26,7 +26,6 @@ const std::string Sun::currentDateTime()
   return buf;
 }
 
-
 /*
  * Sun's azimuth and elevation given a datetime and lat/long.
  *
@@ -35,27 +34,27 @@ const std::string Sun::currentDateTime()
  * matches altitude, azimuth values returned by NOAA calculator. This variation was
  * converted from Javascript
  */
-void Sun::get_sun_pos(float latitude, float longitude, float *elevation, float *azimuth)
+vec_t Sun::getPosition(float latitude, float longitude)
 {
+	vec_t cartesianPosition; // return vector
 	string dateTime;
 	dateTime = currentDateTime();
 
-	float zenith;
 	int year = stoi(dateTime.substr(0,4));
 	int month = stoi(dateTime.substr(5,2));
 	int day = stoi(dateTime.substr(8,2));
 	int UTHour = stoi(dateTime.substr(11,2));
 	int UTMinute = stoi(dateTime.substr(14,2));
 
-	float pi =3.14159265358979323;
-	float twopi=(2*pi);
-	float rad=(pi/180);
-	float EarthMeanRadius=6371.01;	// In km
-	float AstronomicalUnit=149597890.;	// In km
+	float pi = 3.14159265358979323;
+	float twopi = (2*pi);
+	float rad = (pi/180);
+	float EarthMeanRadius = 6371.01;	// In km
+	float AstronomicalUnit = 149597890.;	// In km
 	float DecimalHours = UTHour + (UTMinute ) / 60.0;
-	long liAux1 =(month-14)/12;
-	long liAux2=(1461*(year + 4800 + liAux1))/4 + (367*(month - 2-12*liAux1))/12- (3*(year + 4900 + liAux1)/100)/4+day-32075;
-	float JulianDate=(liAux2)-0.5+ DecimalHours/24.0;
+	long liAux1 = (month-14)/12;
+	long liAux2=(1461*(year + 4800 + liAux1))/4 + (367*(month - 2-12*liAux1))/12- (3*(year + 4900 + liAux1)/100)/4 + day - 32075;
+	float JulianDate = (liAux2) - 0.5 + DecimalHours/24.0;
 	float ElapsedJulianDays = JulianDate-2451545.0;
 	float Omega=2.1429-0.0010394594*ElapsedJulianDays;
 	float MeanLongitude = 4.8950630+ 0.017202791698*ElapsedJulianDays; // Radians
@@ -82,9 +81,12 @@ void Sun::get_sun_pos(float latitude, float longitude, float *elevation, float *
 	if ( UTSunCoordinatesAzimuth < 0.0 )
 		UTSunCoordinatesAzimuth = UTSunCoordinatesAzimuth + twopi;
 	UTSunCoordinatesAzimuth = UTSunCoordinatesAzimuth/rad;
-	float Parallax=(EarthMeanRadius/AstronomicalUnit)*sin(UTSunCoordinatesZenithAngle);
-	UTSunCoordinatesZenithAngle=(UTSunCoordinatesZenithAngle + Parallax)/rad;
-	*azimuth=UTSunCoordinatesAzimuth;
-	zenith=UTSunCoordinatesZenithAngle;
-	*elevation=90.-UTSunCoordinatesZenithAngle;
+	float Parallax = (EarthMeanRadius/AstronomicalUnit) * sin(UTSunCoordinatesZenithAngle);
+	UTSunCoordinatesZenithAngle = (UTSunCoordinatesZenithAngle + Parallax)/rad;
+	float elevation = 90. - UTSunCoordinatesZenithAngle;
+
+	cartesianPosition.x = cos(UTSunCoordinatesAzimuth) * cos(elevation);
+	cartesianPosition.y = sin(theta) * cos(elevation);
+	cartesianPosition.z = sin(elevation);
+	return cartesianPosition;
 }
