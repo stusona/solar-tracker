@@ -13,18 +13,20 @@ Motor::Motor()
 /*
  * moveForward
  */
-void Motor::moveForward(int speed)
+void Motor::move(int speed)
 {
-	// go forward
-	//
-}
+	// correct if speed out of range
+	if(speed > 100)
+		speed = 100;
+	else if(speed < -100)
+		speed = -100;
+	// set direction
+	if(speed >= 0)
+		direction = 1;
+	else
+		direction = -1;
 
-/*
- * moveBackward
- */
-void Motor::moveBackward(int speed)
-{
-	// go backward
+	// TODO map speed to PWM
 }
 
 /*
@@ -33,6 +35,7 @@ void Motor::moveBackward(int speed)
 void Motor::stop()
 {
 	printf("Motor stop");
+	direction = 0;
 }
 /*
  * home
@@ -51,11 +54,25 @@ void Motor::home()
 /*
  * setHomeVec
  */
-void setHomeVec(vec_t homeVec);
+void setHomeVec(vec_t v);
 {
-	// TODO check if I need anything here
+	homeVec = v;
 }
 
+/*
+ * getHomeVec
+ */
+vec_t getHomeVec();
+{
+	return homeVec;
+}
+/*
+ * setMotorPlane
+ */
+void setMotorPlane(vec_t v);
+{
+	planeVec = v;
+}
 /*
  * getHomeVec
  */
