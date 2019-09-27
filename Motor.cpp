@@ -11,26 +11,55 @@ Motor::Motor()
 { }
 
 /*
- * motorForward
+ * moveForward
  */
-void Motor::motorForward(int speed)
+void Motor::moveForward(int speed)
 {
 	// go forward
 	//
 }
 
 /*
- * motorBackward
+ * moveBackward
  */
-void Motor::motorBackward(int speed)
+void Motor::moveBackward(int speed)
 {
 	// go backward
 }
 
 /*
- * motorStop
+ * stop
  */
-void Motor::motorStop()
+void Motor::stop()
 {
-	// stahp
+	printf("Motor stop");
+}
+/*
+ * home
+ */
+void Motor::home()
+{
+	moveBackward(10);
+	printf("Homing\n");
+	while(digitalRead(HOME_PIN))
+	{
+		usleep(1);
+	}
+	stop();
+}
+
+/*
+ * setHomeVec
+ */
+void setHomeVec(vec_t homeVec);
+{
+	// TODO check if I need anything here
+}
+
+/*
+ * getHomeVec
+ */
+vec_t getHomeVec();
+{
+	return homeVec;
 }

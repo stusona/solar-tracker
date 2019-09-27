@@ -17,6 +17,9 @@
 
 using namespace std;
 
+// constants
+const int HOME_PIN = 7; // Phys 7 is GPIO 4
+
 // Struct for vectors
 typedef struct
 {
