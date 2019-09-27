@@ -72,3 +72,15 @@ imu_t IMU_sensor::read_fifo(void)
 
 	return imu;
 }
+/******************************************************************************
+ * vec_t read_mag
+ *
+ * Reads IMU mag values from imu.fifo and write to the imu mag position vector
+******************************************************************************/
+vec_t IMU_sensor::getMagPosition(void)
+{
+	magPosition.x = imu.magX;
+	magPosition.y = imu.magY;
+	magPosition.z = imu.magZ;
+	return magPosition;
+}
