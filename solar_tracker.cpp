@@ -5,6 +5,7 @@
  */
 #include "solar_tracker.h"
 using namespace std;
+float angleBetweenVectors(vec_t vec1, vec_t vec2);
 
 int main()
 {
@@ -47,4 +48,18 @@ int main()
 
 
 	return 0;
+}
+
+/*
+ * angleBetweenVectors
+ *
+ * Returns angle (in radians) between two 3D vectors
+ */
+float angleBetweenVectors(vec_t vec1, vec_t vec2)
+{
+	float dot = vec1.x*vec2.x + vec1.y*vec2.y + vec1.z*vec2.z;
+	float mag1 = sqrt(vec1.x*vec1.x + vec1.y*vec1.y + vec1.z*vec.z);
+	float mag2 = sqrt(pow(vec2.x,2) + pow(vec2.y,2) + pow(vec2.z,2));
+	float angle = dot/(mag1*mag2);
+	return angle;
 }
