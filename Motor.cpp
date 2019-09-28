@@ -42,7 +42,7 @@ void Motor::stop()
 /*
  * home
  */
-void Motor::home()
+int Motor::home()
 {
 	move(-10);
 	printf("Homing\n");
@@ -51,12 +51,13 @@ void Motor::home()
 		usleep(1);
 	}
 	stop();
+	return 0;
 }
 
 /*
  * setHomeVec
  */
-void setHomeVec(vec_t v);
+void setHomeVec(vec_t v)
 {
 	homeVec = v;
 }
@@ -64,21 +65,21 @@ void setHomeVec(vec_t v);
 /*
  * getHomeVec
  */
-vec_t getHomeVec();
+vec_t getHomeVec()
 {
 	return homeVec;
 }
 /*
  * setMotorPlane
  */
-void setMotorPlane(vec_t v);
+void setMotorPlane(vec_t v)
 {
 	planeVec = v;
 }
 /*
  * getHomeVec
  */
-vec_t getHomeVec();
+vec_t getHomeVec()
 {
 	return homeVec;
 }

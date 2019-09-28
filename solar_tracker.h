@@ -14,6 +14,7 @@
 #include <unistd.h>
 #include "Motor.h"
 #include "Sun.h"
+#include "IMU_sensor.h"
 
 using namespace std;
 
@@ -21,13 +22,13 @@ using namespace std;
 const int HOME_PIN = 7; // Phys 7 is GPIO 4
 
 // Struct for vectors
-typedef struct
+struct vec_t 
 {
 	float x, y, z;
-} vec_t;
+};
 
 // Struct for holding BNO055 return values
-typedef struct
+typedef struct imu_t
 {
   float yaw, roll, pitch;
   float p, q, r;
