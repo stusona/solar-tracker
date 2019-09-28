@@ -3,6 +3,7 @@
  */
 #ifndef MOTOR_H
 #define MOTOR_H
+#include "solar-tracker.h"
 
 class Motor
 {

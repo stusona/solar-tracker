@@ -24,7 +24,7 @@ const int HOME_PIN = 7; // Phys 7 is GPIO 4
 typedef struct
 {
 	float x, y, z;
-} vec_t
+} vec_t;
 
 // Struct for holding BNO055 return values
 typedef struct
