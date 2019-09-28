@@ -19,7 +19,7 @@ int main()
 	Motor motor1;
 	initializeMotorPlane() // TODO throw this under main() for now, then maybe put it in motor class?
 	{
-		motor1.home(); // TODO create this in the motor class
+		motor1.home();
 		motorPlaneVec1 = IMU.getMagPosition();
 		do // TODO: currently blocking
 		{
@@ -27,7 +27,9 @@ int main()
 			motorPlaneVec2 = IMU.getMagPosition();
 		} while(angleBetweenVectors(motorPlaneVec1, motorPlaneVec2) < pi/2);
 		// define motor plane using the two vectors.
-		motor1.setMotorPlane(motorPlaneVec1, motorPlaneVec2); // create this func in motor class
+		vec_t planeVec1;
+		crossProduct(motorPlaneVec1, motorPlaneVec2, planeVec1);
+		motor1.setMotorPlane(planeVec1);
 	}
 
 	float Lat = 37.9, Lon = -122.; // solar panel position on the earth
@@ -37,6 +39,12 @@ int main()
 	printf("Sun position: %7.0f, %7.0f, %7.0f\n", sunPosition.x, sunPosition.y, sunPosition.z);
 	//printf("Sun altitude = %7.2f, azimuth = %7.2f \n", elev, azi);
 
+	// Project sunPosition onto planeVec1
+	// setpoint = planeVec X (sunPosition X planeVec)
+	vec_t panelSetpoint1;
+	crossProduct(sunPosition, planeVec1, panelSetpoint);
+	// ugh this doesn't really work
+
 	int input;
 	do
 	{
@@ -45,7 +53,6 @@ int main()
 		cout << "Type 1 to repeat, anything else to end" << endl;
 		cin >> input;
 	} while(input == 1);
-
 
 	return 0;
 }

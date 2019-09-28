@@ -8,7 +8,9 @@
  * Motor constructor
  */
 Motor::Motor()
-{ }
+{
+	// TODO set home pin with this
+}
 
 /*
  * moveForward
@@ -42,7 +44,7 @@ void Motor::stop()
  */
 void Motor::home()
 {
-	moveBackward(10);
+	move(-10);
 	printf("Homing\n");
 	while(digitalRead(HOME_PIN))
 	{
