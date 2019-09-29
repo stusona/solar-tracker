@@ -2,7 +2,6 @@
  * Motor.cpp
  */
 #include "Motor.h"
-#include "solar_tracker.h"
 
 /*
  * Motor constructor
@@ -47,9 +46,7 @@ int Motor::home()
 	move(-10);
 	printf("Homing\n");
 	while(digitalRead(HOME_PIN))
-	{
 		usleep(1);
-	}
 	stop();
 	return 0;
 }

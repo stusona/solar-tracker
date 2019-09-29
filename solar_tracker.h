@@ -12,17 +12,12 @@
 #include <stdio.h>
 #include <wiringPi.h>
 #include <unistd.h>
-#include "Motor.h"
-#include "Sun.h"
-#include "IMU_sensor.h"
-
-using namespace std;
 
 // constants
 const int HOME_PIN = 7; // Phys 7 is GPIO 4
 
 // Struct for vectors
-struct vec_t 
+struct vec_t
 {
 	float x, y, z;
 };

@@ -12,6 +12,6 @@ private:
 public:
 	void start_read_imu(void);
 	imu_t read_fifo(void);
-	vec_t getMagPosition(void)
+	vec_t getMagPosition(void);
 };
 #endif

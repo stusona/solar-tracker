@@ -2,7 +2,6 @@
  * Sun.cpp
  */
 #include "Sun.h"
-#include "solar_tracker.h"
 
 /*
  * Sun constructor
