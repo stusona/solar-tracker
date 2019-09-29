@@ -26,10 +26,11 @@ struct vec_t
 typedef struct imu_t
 {
   float yaw, roll, pitch;
-  float p, q, r;
-  int sys, gyro, accel, mag;
-  float x_acc, y_acc, z_acc;
-} imu_t;
+  float magX, magY, magZ;
+//  float p, q, r;
+//  int sys, gyro, accel, mag;
+//  float x_acc, y_acc, z_acc;
+} imu;
 
 // Struct for PID Controllers
 typedef struct pid_data_t

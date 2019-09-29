@@ -54,7 +54,7 @@ int Motor::home()
 /*
  * setHomeVec
  */
-void setHomeVec(vec_t v)
+void Motor::setHomeVec(vec_t v)
 {
 	homeVec = v;
 }
@@ -62,21 +62,21 @@ void setHomeVec(vec_t v)
 /*
  * getHomeVec
  */
-vec_t getHomeVec()
+vec_t Motor::getHomeVec()
 {
 	return homeVec;
 }
 /*
- * setMotorPlane
+ * setPlaneVec
  */
-void setMotorPlane(vec_t v)
+void Motor::setPlaneVec(vec_t v)
 {
 	planeVec = v;
 }
 /*
- * getHomeVec
+ * getMotorPlane
  */
-vec_t getHomeVec()
+vec_t Motor::getPlaneVec()
 {
-	return homeVec;
+	return planeVec;
 }

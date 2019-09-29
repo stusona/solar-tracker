@@ -63,13 +63,13 @@ int main()
  *
  * Returns angle (in radians) between two 3D vectors
  */
-// float angleBetweenVectors(vec_t vec1, vec_t vec2)
-// {
-// 	float dot = vec1.x*vec2.x + vec1.y*vec2.y + vec1.z*vec2.z;
-// 	float mag1 = sqrt(vec1.x*vec1.x + vec1.y*vec1.y + vec1.z*vec.z);
-// 	float mag2 = sqrt(pow(vec2.x,2) + pow(vec2.y,2) + pow(vec2.z,2));
-// 	float angle = dot/(mag1*mag2);
-// 	return angle;
+ float angleBetweenVectors(vec_t vec1, vec_t vec2)
+ {
+ 	float dot = vec1.x*vec2.x + vec1.y*vec2.y + vec1.z*vec2.z;
+ 	float mag1 = sqrt(vec1.x*vec1.x + vec1.y*vec1.y + vec1.z*vec1.z);
+ 	float mag2 = sqrt(pow(vec2.x,2) + pow(vec2.y,2) + pow(vec2.z,2));
+ 	float angle = dot/(mag1*mag2);
+ 	return angle;
 }
 
 /*
@@ -77,9 +77,9 @@ int main()
  *
  * Creates cross product of 2 vectors. Shamelessly copied from geeksforgeeks.
  */
-// void crossProduct(vec_t vect_A, vec_t vect_B, vec_t cross_P)
-// {
-//     cross_P.x = vect_A.y * vect_B.z - vect_A.z * vect_B.y;
-//     cross_P.y = vect_A.x * vect_B.z - vect_A.z * vect_B.x;
-//     cross_P.z = vect_A.x * vect_B.y - vect_A.y * vect_B.x;
-// }
+ void crossProduct(vec_t vect_A, vec_t vect_B, vec_t cross_P)
+ {
+     cross_P.x = vect_A.y * vect_B.z - vect_A.z * vect_B.y;
+     cross_P.y = vect_A.x * vect_B.z - vect_A.z * vect_B.x;
+     cross_P.z = vect_A.x * vect_B.y - vect_A.y * vect_B.x;
+ }

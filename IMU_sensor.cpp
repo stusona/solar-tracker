@@ -2,7 +2,6 @@
  * IMU.cpp
  */
 #include "IMU_sensor.h"
-#include "solar_tracker.h"
 
 /*
  * IMU constructor
@@ -59,19 +58,19 @@ void IMU_sensor::start_read_imu(void)
 ******************************************************************************/
 imu_t IMU_sensor::read_fifo(void)
 {
-	imu_t imu;
 	char buf[1000];
 	FILE *fd = fopen( "imu.fifo", "r");
 	fgets(buf,1000,fd);
 	fclose(fd);
-	sscanf(buf,"%f %f %f %f %f %f %i %i %i %i %f %f %f",
+	sscanf(buf,"%f %f %f %f %f %f",
 				 &imu.yaw,  &imu.roll,  &imu.pitch,
-				 &imu.magX, &imu.magY,  &imu.magZ,
-				 &imu.sys,  &imu.gyro,  &imu.accel,
-				 &imu.mag,  &imu.x_acc, &imu.y_acc, &imu.z_acc);
+				 &imu.magX, &imu.magY,  &imu.magZ);
+//				 &imu.sys,  &imu.gyro,  &imu.accel,
+//				 &imu.mag,  &imu.x_acc, &imu.y_acc, &imu.z_acc);
 
 	return imu;
 }
+
 /******************************************************************************
  * vec_t read_mag
  *
@@ -79,6 +78,7 @@ imu_t IMU_sensor::read_fifo(void)
 ******************************************************************************/
 vec_t IMU_sensor::getMagPosition(void)
 {
+	vec_t magPosition;
 	magPosition.x = imu.magX;
 	magPosition.y = imu.magY;
 	magPosition.z = imu.magZ;

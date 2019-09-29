@@ -36,7 +36,7 @@ const std::string Sun::currentDateTime()
 vec_t Sun::getPosition(float latitude, float longitude)
 {
 	vec_t cartesianPosition; // return vector
-	string dateTime;
+	std::string dateTime;
 	dateTime = currentDateTime();
 
 	int year = stoi(dateTime.substr(0,4));
@@ -85,7 +85,7 @@ vec_t Sun::getPosition(float latitude, float longitude)
 	float elevation = pi/2. - UTSunCoordinatesZenithAngle;
 
 	cartesianPosition.x = cos(UTSunCoordinatesAzimuth) * cos(elevation);
-	cartesianPosition.y = sin(theta) * cos(elevation);
+	cartesianPosition.y = sin(UTSunCoordinatesAzimuth) * cos(elevation);
 	cartesianPosition.z = sin(elevation);
 	return cartesianPosition;
 }

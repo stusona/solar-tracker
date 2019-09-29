@@ -17,9 +17,9 @@ public:
 	void move(int speed);
 	void stop();
 	int home();
-	void setHomeVec(vec_t homeVec);
+	void setHomeVec(vec_t v);
 	vec_t getHomeVec();
-	void setMotorPlane(vec_t planeVec);
-	vec_t getMotorPlane();
+	void setPlaneVec(vec_t v);
+	vec_t getPlaneVec();
 };
 #endif
