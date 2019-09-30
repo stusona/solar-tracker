@@ -9,7 +9,6 @@
 
 int main()
 {
-	/*
 	wiringPiSetupPhys(); // start wiringPi
 	// pinmode for motor control
 	//pinMode(12, OUTPUT);
@@ -18,21 +17,23 @@ int main()
 	IMU.start_read_imu();	// start IMU
 
 	Motor motor1;
-	initializeMotorPlane() // TODO throw this under main() for now, then maybe put it in motor class?
-	{
+//	initializeMotorPlane() // TODO throw this under main() for now, then maybe put it in motor class?
+//	{
 		motor1.home();
-		motorPlaneVec1 = IMU.getMagPosition();
+		vec_t initPlaneVec1 = IMU.getMagPosition();
 		do // TODO: currently blocking
 		{
-			motor1.moveForward();
-			motorPlaneVec2 = IMU.getMagPosition();
-		} while(angleBetweenVectors(motorPlaneVec1, motorPlaneVec2) < pi/2);
+			motor1.move(10);
+			vec_t initPlaneVec2 = IMU.getMagPosition();
+			usleep(100);
+		} while(angleBetweenVectors(initPlaneVec1, initPlaneVec2) < pi/2);
 		// define motor plane using the two vectors.
 		vec_t planeVec1;
-		crossProduct(motorPlaneVec1, motorPlaneVec2, planeVec1);
-		motor1.setMotorPlane(planeVec1);
-	}
-
+		crossProduct(initPlaneVec1, initPlaneVec2, planeVec1);
+		motor1.setPlaneVec(planeVec1);
+		printf("Plane vector 1: %7.1, %7.1, %7.1\n", planeVec1.x, planeVec1.y, planeVec1.z);
+//	}
+/*
 	float Lat = 37.9, Lon = -122.; // solar panel position on the earth
 	Sun mySun;
 	vec_t sunPosition = mySun.getPosition(Lat, Lon);

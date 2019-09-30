@@ -74,7 +74,7 @@ void Motor::setPlaneVec(vec_t v)
 	planeVec = v;
 }
 /*
- * getMotorPlane
+ * getPlaneVec
  */
 vec_t Motor::getPlaneVec()
 {
