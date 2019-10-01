@@ -9,7 +9,7 @@ from Adafruit_BNO055 import BNO055
 
 # Create and configure the BNO sensor connection.
 # Raspberry Pi configuration with serial UART and RST connected to GPIO 18:
-bno = BNO055.BNO055(serial_port='/dev/serial0', rst=18)
+bno = BNO055.BNO055(serial_port='/dev/serial0', rst=4)
 
 # Initialize the BNO055 and stop if something went wrong.
 print "Initializing IMU"

@@ -4,18 +4,31 @@
  *
  */
 #include "solar_tracker.h"
+#include "Motor.h"
+#include "Sun.h"
+#include "IMU_sensor.h"
 
-//float angleBetweenVectors(vec_t vec1, vec_t vec2);
+float angleBetweenVectors(vec_t vec1, vec_t vec2);
+void crossProduct(vec_t vect_A, vec_t vect_B, vec_t cross_P);
 
 int main()
 {
 	wiringPiSetupPhys(); // start wiringPi
 	// pinmode for motor control
-	//pinMode(12, OUTPUT);
-	//pinMode(XX, OUTPUT);
+	pinMode(12, OUTPUT);
+	pinMode(11, OUTPUT);
+	digitalWrite(11,0); // DIR
+	for(int i=1; i<500; i++)
+	{
+		digitalWrite(12,1);
+		usleep(5000);
+		digitalWrite(12,0);
+		usleep(5000);
+	}
 	IMU_sensor IMU;
 	IMU.start_read_imu();	// start IMU
 
+/*
 	Motor motor1;
 //	initializeMotorPlane() // TODO throw this under main() for now, then maybe put it in motor class?
 //	{
@@ -33,7 +46,7 @@ int main()
 		motor1.setPlaneVec(planeVec1);
 		printf("Plane vector 1: %7.1, %7.1, %7.1\n", planeVec1.x, planeVec1.y, planeVec1.z);
 //	}
-/*
+//*/
 	float Lat = 37.9, Lon = -122.; // solar panel position on the earth
 	Sun mySun;
 	vec_t sunPosition = mySun.getPosition(Lat, Lon);
@@ -43,8 +56,8 @@ int main()
 
 	// Project sunPosition onto planeVec1
 	// setpoint = planeVec X (sunPosition X planeVec)
-	vec_t panelSetpoint1;
-	crossProduct(sunPosition, planeVec1, panelSetpoint);
+	//vec_t panelSetpoint1;
+	//crossProduct(sunPosition, planeVec1, panelSetpoint);
 	// ugh this doesn't really work
 
 	int input;
@@ -52,10 +65,10 @@ int main()
 	{
 		imu_t imu = IMU.read_fifo();
 		printf("%7.0f, %7.0f, %7.0f\n", imu.yaw, imu.roll, imu.pitch);
-		cout << "Type 1 to repeat, anything else to end" << endl;
-		cin >> input;
+		std::cout << "Type 1 to repeat, anything else to end" << std::endl;
+		std::cin >> input;
 	} while(input == 1);
-*/
+//*/
 	return 0;
 }
 
