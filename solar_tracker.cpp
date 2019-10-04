@@ -7,6 +7,13 @@
 #include "Motor.h"
 #include "Sun.h"
 #include "IMU_sensor.h"
+#include <iostream> // std::cout, std::cin, std::endl
+#include <string.h>
+#include <stdio.h> // printf
+#include <time.h> // usleep?
+#include <math.h> // pow
+#include <wiringPi.h> // all GPIO functions
+#include <unistd.h> // ??
 
 float angleBetweenVectors(vec_t vec1, vec_t vec2);
 void crossProduct(vec_t vect_A, vec_t vect_B, vec_t cross_P);

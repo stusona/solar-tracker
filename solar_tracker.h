@@ -4,14 +4,6 @@
 
 #ifndef SOLAR_TRACKER_H
 #define SOLAR_TRACKER_H
-#include <iostream>
-#include <fstream>
-#include <string.h>
-#include <time.h>
-#include <math.h>
-#include <stdio.h>
-#include <wiringPi.h>
-#include <unistd.h>
 
 // constants
 const int HOME_PIN = 7; // Phys 7 is GPIO 4

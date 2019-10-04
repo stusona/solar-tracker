@@ -2,6 +2,8 @@
  * IMU.cpp
  */
 #include "IMU_sensor.h"
+#include <fstream> // peek
+#include <stdio.h> // fopen, fclose, printf
 
 /*
  * IMU constructor

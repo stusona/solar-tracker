@@ -2,6 +2,7 @@
  * Sun.cpp
  */
 #include "Sun.h"
+#include <math.h>
 
 /*
  * Sun constructor
